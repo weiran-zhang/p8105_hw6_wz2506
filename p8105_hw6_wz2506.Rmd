@@ -162,3 +162,13 @@ bootstrap_results_1 =
   unnest(results,variables) 
 
 ```
+
+Plot of $\hat{r}^2$
+```{r}
+bootstrap_results_1 %>% 
+  ggplot(aes(x = r.squared))+ geom_density()+
+  labs(title = "the distribution of r-squared",
+       x = "r-squared")
+```
+
+From the plot, we can see a little bit left-skewed plot with light tail to the low values that may indicates that some outliers are included in the sample.
