@@ -185,3 +185,26 @@ CI_1 =
 CI_1
 
 ```
+
+Plot of $log(\hat{\beta_0}*\hat{\beta_1})$
+```{r}
+
+bootstrap_results_2 =
+  bootstrap_results_1 %>% 
+  select(.id, term, estimate) %>% 
+  pivot_wider(
+    id_cols = .id,
+    values_from = estimate,
+    names_from = term
+  ) %>% 
+  janitor::clean_names() %>% 
+  mutate(log_value = log(intercept*tmin)) 
+
+bootstrap_results_2 %>% 
+  ggplot(aes(x = log_value))+ geom_density()+
+  labs(title = "the distribution of log(beta0_hat * beta1_hat)",
+       x = "log(beta0_hat * beta1_hat)")
+  
+```
+
+From the plot, we can see that a close to bell-shaped normal distributed plot which means that the distribution of $log(\hat{\beta_0}*\hat{\beta_1})$ basically follows normal distribution. 
