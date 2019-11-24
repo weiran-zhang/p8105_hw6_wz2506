@@ -13,3 +13,18 @@ knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(readxl)
 ```
+
+
+**Problem 1**
+
+Load and clean the data
+```{r}
+##Load and clean the dataset
+birthweight = read_csv("/Users/weiranzhang/Downloads/birthweight.csv") %>% 
+janitor::clean_names() %>% 
+  mutate(babysex = factor(recode(babysex,"1" = "male","2" = "famle" )),
+        frace = factor(recode(frace,"1" = "White","2" = "Black" ,"3" = "Asian", "4"= "Puerto Rican","8"  = "Other", "9" = "Unknown")),
+        mrace = factor(recode(mrace,"1" = "White","2" = "Black" ,"3" = "Asian", "4"= "Puerto Rican","8"  = "Other")),
+        malform = factor(recode(malform,"0" = "absent","1" = "present")))
+
+```

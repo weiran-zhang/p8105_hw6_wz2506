@@ -370,7 +370,20 @@ summary {
 </div>
 
 
-
+<p><strong>Problem 1</strong></p>
+<p>Load and clean the data</p>
+<pre class="r"><code>##Load and clean the dataset
+birthweight = read_csv(&quot;/Users/weiranzhang/Downloads/birthweight.csv&quot;) %&gt;% 
+janitor::clean_names() %&gt;% 
+  mutate(babysex = factor(recode(babysex,&quot;1&quot; = &quot;male&quot;,&quot;2&quot; = &quot;famle&quot; )),
+        frace = factor(recode(frace,&quot;1&quot; = &quot;White&quot;,&quot;2&quot; = &quot;Black&quot; ,&quot;3&quot; = &quot;Asian&quot;, &quot;4&quot;= &quot;Puerto Rican&quot;,&quot;8&quot;  = &quot;Other&quot;, &quot;9&quot; = &quot;Unknown&quot;)),
+        mrace = factor(recode(mrace,&quot;1&quot; = &quot;White&quot;,&quot;2&quot; = &quot;Black&quot; ,&quot;3&quot; = &quot;Asian&quot;, &quot;4&quot;= &quot;Puerto Rican&quot;,&quot;8&quot;  = &quot;Other&quot;)),
+        malform = factor(recode(malform,&quot;0&quot; = &quot;absent&quot;,&quot;1&quot; = &quot;present&quot;)))</code></pre>
+<pre><code>## Parsed with column specification:
+## cols(
+##   .default = col_double()
+## )</code></pre>
+<pre><code>## See spec(...) for full column specifications.</code></pre>
 
 
 
