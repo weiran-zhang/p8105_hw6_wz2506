@@ -172,3 +172,16 @@ bootstrap_results_1 %>%
 ```
 
 From the plot, we can see a little bit left-skewed plot with light tail to the low values that may indicates that some outliers are included in the sample.
+
+95% confidence interval for $\hat{r}^2$
+```{r}
+
+CI_1 = 
+  bootstrap_results_1 %>% 
+  filter(term == "tmin") %>% 
+  pull(r.squared) %>% 
+  quantile(c(0.025, 0.975))
+
+CI_1
+
+```
