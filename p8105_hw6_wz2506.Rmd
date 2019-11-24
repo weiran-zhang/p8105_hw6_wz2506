@@ -186,6 +186,8 @@ CI_1
 
 ```
 
+The 95% confidence interval for $\hat{r}^2$ is (0.8941060, 0.9270013)
+
 Plot of $log(\hat{\beta_0}*\hat{\beta_1})$
 ```{r}
 
