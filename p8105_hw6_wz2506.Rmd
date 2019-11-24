@@ -127,3 +127,21 @@ pivot_longer(
 ```
 
 From the plot of rmse distribution, we can see that the rmse for model with only length at birth and gestational age as predictors has the highest rmse value among all three models, and the model with head circumference, length, sex and all interactions are the second highest and the BIC selected model has the lowest rmse which means it is the best model among all those three models. 
+
+
+**Problem 2**
+
+```{r}
+
+weather_df = 
+  rnoaa::meteo_pull_monitors(
+    c("USW00094728"),
+    var = c("PRCP", "TMIN", "TMAX"), 
+    date_min = "2017-01-01",
+    date_max = "2017-12-31") %>%
+  mutate(
+    name = recode(id, USW00094728 = "CentralPark_NY"),
+    tmin = tmin / 10,
+    tmax = tmax / 10) %>%
+  select(name, id, everything())
+```
