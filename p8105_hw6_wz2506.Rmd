@@ -208,3 +208,15 @@ bootstrap_results_2 %>%
 ```
 
 From the plot, we can see that a close to bell-shaped normal distributed plot which means that the distribution of $log(\hat{\beta_0}*\hat{\beta_1})$ basically follows normal distribution. 
+
+```{r}
+
+CI_2 = 
+  bootstrap_results_2 %>% 
+  pull(log_value) %>% 
+  quantile(c(0.025, 0.975))
+
+CI_2
+```
+
+The 95% confidence interval for $log(\hat{\beta_0}*\hat{\beta_1})$ is (1.965644, 2.059312) 
