@@ -63,3 +63,18 @@ BIC_model %>%
 Description of modeling process: 
 The model-building process is based on BIC (Bayesian information criterion) which is a model selection method based on finite set of models and lower BIC value indicates a better model. 
 So the best model we got by the BIC selection method shows that baby's sex, baby's head circumference at birth, baby’s length at birth, mother’s weight at delivery, gestational age in weeks, mother’s height, mother’s race, mother’s pre-pregnancy weight and average nomberof cigarettes smoked per day during pregnancy are appropriate predictors of the child's birth weight. 
+
+Plot of model residuals against fitted values
+```{r}
+
+birthweight %>% 
+  modelr::add_residuals(BIC_model) %>% 
+  modelr::add_predictions(BIC_model) %>% 
+  ggplot(aes(x = pred, y = resid)) + 
+  geom_point() + geom_line( y = 0, color = "red") +
+  labs(
+    x = "fitted values",
+    y = "residuals",
+    title = "residuals vs. fitted values"
+  ) 
+```
