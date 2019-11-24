@@ -9,5 +9,7 @@ output: html_document
 rm(list = ls())
 knitr::opts_chunk$set(echo = TRUE)
 
-
+##load packages
+library(tidyverse)
+library(readxl)
 ```
