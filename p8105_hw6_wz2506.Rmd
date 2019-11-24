@@ -29,4 +29,20 @@ janitor::clean_names() %>%
 
 anyNA(birthweight) ##check for missing data
 
+birthweight
+
+```
+
+Propose a regression model
+
+By BIC model-building process
+```{r}
+##Fist check the full model
+full_model = lm(bwt ~ ., data = birthweight)
+summary(full_model)
+
+full_model %>% 
+  broom::tidy() %>% 
+  select(term, estimate, p.value) %>% 
+  knitr::kable()
 ```
