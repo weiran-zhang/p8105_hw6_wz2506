@@ -97,3 +97,31 @@ model_2 = lm(bwt ~ bhead*blength + bhead*babysex + blength*babysex + bhead*babys
 model_2 %>% 
   broom::tidy() %>% knitr::kable()
 ```
+
+Cross-validation
+```{r}
+
+cv_df =
+  modelr::crossv_mc(birthweight, 100) %>% 
+  mutate(
+    train = map(train, as_tibble),
+    test = map(test, as_tibble)) %>% 
+  mutate(BIC_mod = map(train, ~BIC_model),
+         model1_mod = map(train, ~model_1),
+         model2_mod = map(train, ~model_2)) %>% 
+  mutate(rmse_BIC = map2_dbl(BIC_mod, test, ~modelr::rmse(model = .x, data = .y)),
+         rmse_model_1= map2_dbl(model1_mod, test, ~modelr::rmse(model = .x, data = .y)),
+         rmse_model_2 = map2_dbl(model2_mod, test, ~modelr::rmse(model = .x, data = .y))
+         )
+
+cv_df %>% 
+  select(starts_with("rmse")) %>% 
+pivot_longer(
+    everything(),
+    names_to = "model", 
+    values_to = "rmse",
+    names_prefix = "rmse_") %>% 
+  mutate(model = fct_inorder(model)) %>% 
+  ggplot(aes(x = model, y = rmse)) + geom_violin()
+
+```
