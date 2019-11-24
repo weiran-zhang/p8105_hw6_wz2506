@@ -574,6 +574,114 @@ summary(full_model)</code></pre>
 </tr>
 </tbody>
 </table>
+<p>By BIC model selection criterion</p>
+<pre class="r"><code>BIC_model = step(full_model, direction = &quot;backward&quot;,
+                k = log(nrow(birthweight)), trace = FALSE)
+summary(BIC_model)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = bwt ~ babysex + bhead + blength + delwt + gaweeks + 
+##     mheight + mrace + ppwt + smoken, data = birthweight)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -1104.52  -183.71    -2.92   174.58  2336.55 
+## 
+## Coefficients:
+##                     Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)       -6139.8824   141.9348 -43.258  &lt; 2e-16 ***
+## babysexmale         -28.9272     8.4577  -3.420 0.000631 ***
+## bhead               131.1745     3.4460  38.065  &lt; 2e-16 ***
+## blength              74.7285     2.0187  37.018  &lt; 2e-16 ***
+## delwt                 4.1053     0.3921  10.471  &lt; 2e-16 ***
+## gaweeks              11.4086     1.4579   7.825 6.32e-15 ***
+## mheight               6.8133     1.7803   3.827 0.000132 ***
+## mraceBlack          -67.3273    42.3562  -1.590 0.112009    
+## mracePuerto Rican   -28.3684    45.3693  -0.625 0.531822    
+## mraceWhite           78.1687    42.3138   1.847 0.064764 .  
+## ppwt                 -2.6726     0.4274  -6.253 4.40e-10 ***
+## smoken               -4.8782     0.5858  -8.327  &lt; 2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 272.5 on 4330 degrees of freedom
+## Multiple R-squared:  0.7175, Adjusted R-squared:  0.7168 
+## F-statistic: 999.9 on 11 and 4330 DF,  p-value: &lt; 2.2e-16</code></pre>
+<pre class="r"><code>BIC_model %&gt;% 
+  broom::tidy() %&gt;% 
+  select(term, estimate, p.value) %&gt;% 
+  knitr::kable()</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">term</th>
+<th align="right">estimate</th>
+<th align="right">p.value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">(Intercept)</td>
+<td align="right">-6139.882420</td>
+<td align="right">0.0000000</td>
+</tr>
+<tr class="even">
+<td align="left">babysexmale</td>
+<td align="right">-28.927218</td>
+<td align="right">0.0006315</td>
+</tr>
+<tr class="odd">
+<td align="left">bhead</td>
+<td align="right">131.174549</td>
+<td align="right">0.0000000</td>
+</tr>
+<tr class="even">
+<td align="left">blength</td>
+<td align="right">74.728511</td>
+<td align="right">0.0000000</td>
+</tr>
+<tr class="odd">
+<td align="left">delwt</td>
+<td align="right">4.105313</td>
+<td align="right">0.0000000</td>
+</tr>
+<tr class="even">
+<td align="left">gaweeks</td>
+<td align="right">11.408645</td>
+<td align="right">0.0000000</td>
+</tr>
+<tr class="odd">
+<td align="left">mheight</td>
+<td align="right">6.813279</td>
+<td align="right">0.0001316</td>
+</tr>
+<tr class="even">
+<td align="left">mraceBlack</td>
+<td align="right">-67.327275</td>
+<td align="right">0.1120094</td>
+</tr>
+<tr class="odd">
+<td align="left">mracePuerto Rican</td>
+<td align="right">-28.368369</td>
+<td align="right">0.5318225</td>
+</tr>
+<tr class="even">
+<td align="left">mraceWhite</td>
+<td align="right">78.168678</td>
+<td align="right">0.0647638</td>
+</tr>
+<tr class="odd">
+<td align="left">ppwt</td>
+<td align="right">-2.672565</td>
+<td align="right">0.0000000</td>
+</tr>
+<tr class="even">
+<td align="left">smoken</td>
+<td align="right">-4.878211</td>
+<td align="right">0.0000000</td>
+</tr>
+</tbody>
+</table>
 
 
 

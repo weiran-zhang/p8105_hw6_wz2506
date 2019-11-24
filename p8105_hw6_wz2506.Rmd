@@ -46,3 +46,16 @@ full_model %>%
   select(term, estimate, p.value) %>% 
   knitr::kable()
 ```
+
+By BIC model selection criterion
+```{r}
+
+BIC_model = step(full_model, direction = "backward",
+                k = log(nrow(birthweight)), trace = FALSE)
+summary(BIC_model)
+
+BIC_model %>% 
+  broom::tidy() %>% 
+  select(term, estimate, p.value) %>% 
+  knitr::kable()
+```
