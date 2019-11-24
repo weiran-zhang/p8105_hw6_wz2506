@@ -1,0 +1,13 @@
+---
+title: "p8105_hw6_wz2506"
+author: "Weiran Zhang"
+date: "11/24/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+rm(list = ls())
+knitr::opts_chunk$set(echo = TRUE)
+
+
+```
