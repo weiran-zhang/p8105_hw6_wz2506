@@ -27,4 +27,6 @@ janitor::clean_names() %>%
         mrace = factor(recode(mrace,"1" = "White","2" = "Black" ,"3" = "Asian", "4"= "Puerto Rican","8"  = "Other")),
         malform = factor(recode(malform,"0" = "absent","1" = "present")))
 
+anyNA(birthweight) ##check for missing data
+
 ```
