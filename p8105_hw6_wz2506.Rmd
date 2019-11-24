@@ -78,3 +78,22 @@ birthweight %>%
     title = "residuals vs. fitted values"
   ) 
 ```
+
+Compare model with two others
+model 1: length at birth and gestational age as predictors
+```{r}
+
+model_1 = lm(bwt ~ blength + gaweeks, data = birthweight) 
+
+model_1 %>% 
+  broom::tidy() %>% knitr::kable()
+```
+
+model 2: head circumference, length, sex, and all interactions 
+```{r}
+
+model_2 = lm(bwt ~ bhead*blength + bhead*babysex + blength*babysex + bhead*babysex*blength,data = birthweight)
+
+model_2 %>% 
+  broom::tidy() %>% knitr::kable()
+```
